@@ -1,6 +1,6 @@
 ## Laravel Workshop
 
-Source code ini digunakan untuk Workshop Laravel gitbersama Rahmat Awaludin. 
+Source code ini digunakan untuk Workshop Laravel bersama Rahmat Awaludin. 
 
 Tertarik? Kontak saya di:
 
