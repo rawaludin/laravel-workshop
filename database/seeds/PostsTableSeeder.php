@@ -11,10 +11,18 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::insert('insert into posts (title, content) values (?, ?)', ['Seminar Laravel', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam']);
-        DB::table('posts')->insert([
-            'title' => 'Pelatihan Laravel',
-            'content' => 'Cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        ]);
+        $faker = Faker\Factory::create();
+
+        foreach (range(1,3) as $i) {
+            App\Category::create(['title'=>$faker->word]);
+        }
+
+        foreach (range(1,5) as $i) {
+            App\Post::create([
+                'title'=>$faker->sentence,
+                'content'=>$faker->paragraph,
+                'category_id'=>rand(1,3)
+            ]);
+        }
     }
 }
