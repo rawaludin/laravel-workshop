@@ -1,5 +1,4 @@
 ## Laravel Workshop
-
 Source code ini digunakan untuk Pelatihan / Workshop Laravel Basic. Untuk topik lainnya, silahkan kontak saya.
 
 Tertarik? Butuh proposal penawaran buat meyakinkan bos ngadain training? Kontak saya di:

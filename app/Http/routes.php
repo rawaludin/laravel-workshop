@@ -14,3 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/post', [
+    'as'    => 'post',
+    function() {
+        return 'Menampilkan semua post';
+    }
+]);
+
+Route::post('/post', [
+    'as'    => 'post.store',
+    function() {
+        return 'berhasil membuat post baru';
+    }
+]);
