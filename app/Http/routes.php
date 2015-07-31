@@ -15,24 +15,4 @@ Route::get('/', function () {
     return view('posts.index');
 });
 
-Route::get('/post', [
-    'as'    => 'post',
-    function() {
-        return view('posts.index');
-    }
-]);
-
-Route::post('/post', [
-    'as'    => 'post.store',
-    function() {
-        return 'berhasil membuat post baru';
-    }
-]);
-
-Route::get('/post/{id}', [
-    'as'    => 'post.show',
-    function($id) {
-        $post = App\Post::findOrFail($id);
-        return view('posts.show')->with('post', $post);
-    }
-]);
+Route::resource('posts', 'PostsController');

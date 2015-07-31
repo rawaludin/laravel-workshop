@@ -11,7 +11,7 @@
   <tbody>
     @foreach (App\Post::all() as $post)
     <tr>
-      <td><a href="{{ route('post.show', $post->id)}}">{{ $post->title }}</a></td>
+      <td><a href="{{ route('posts.show', $post->id)}}">{{ $post->title }}</a></td>
       <td>{{ $post->category->title }}</td>
     </tr>
     @endforeach
