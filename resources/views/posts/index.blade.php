@@ -1,6 +1,11 @@
 @extends('layouts.default')
 
 @section('content')
+@if (Auth::check())
+    Welcome, {{ Auth::user()->name }}! <a href="/auth/logout" class="btn btn-primary">Logout</a>
+@else
+  <a href="/auth/login">Login</a> | <a href="/auth/register">Register</a>
+@endif
 <table class="table table-hover">
   <thead>
     <tr>
