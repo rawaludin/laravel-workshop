@@ -26,7 +26,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -37,7 +37,8 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        \App\Post::create($request->all());
+        return redirect()->route('posts.index')->with('status', 'Post Created!');
     }
 
     /**
@@ -60,7 +61,8 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = \App\Post::findOrFail($id);
+        return view('posts.edit')->with('post', $post);
     }
 
     /**
@@ -72,7 +74,9 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = \App\Post::findOrFail($id);
+        $post->update($request->all());
+        return redirect()->route('posts.index')->with('status', 'Post Updated!');
     }
 
     /**
@@ -83,6 +87,7 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \App\Post::findOrFail($id)->delete();
+        return redirect()->route('posts.index')->with('status', 'Post Deleted!');
     }
 }
