@@ -37,6 +37,12 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|unique:posts|max:255',
+            'content' => 'required',
+            'category_id' => 'required'
+        ]);
+
         \App\Post::create($request->all());
         return redirect()->route('posts.index')->with('status', 'Post Created!');
     }
