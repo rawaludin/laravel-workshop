@@ -17,7 +17,7 @@
     @foreach (App\Post::all() as $post)
     <tr>
       <td><a href="{{ route('posts.show', $post->id)}}">{{ $post->title }}</a>
-      @if (Auth::check())
+      @if (Auth::check() && $post->ownedBy(Auth::user()) )
       <span class="pull-right">
         {!! Form::model($post, ['route'=>['posts.destroy', $post->id], 'method'=>'delete', 'class'=>'form-inline']) !!}
           <a href="{{ route('posts.edit', $post->id) }}">Edit</a>

@@ -14,6 +14,14 @@ class PostsTableSeeder extends Seeder
         $faker = Faker\Factory::create();
 
         foreach (range(1,3) as $i) {
+            App\User::create([
+                'name' => $faker->name,
+                'email' => $faker->email,
+                'password' => bcrypt('password')
+            ]);
+        }
+
+        foreach (range(1,3) as $i) {
             App\Category::create(['title'=>$faker->word]);
         }
 
@@ -21,7 +29,8 @@ class PostsTableSeeder extends Seeder
             App\Post::create([
                 'title'=>$faker->sentence,
                 'content'=>$faker->paragraph,
-                'category_id'=>rand(1,3)
+                'category_id'=>rand(1,3),
+                'user_id'=>rand(1,3)
             ]);
         }
     }

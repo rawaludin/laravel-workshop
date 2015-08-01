@@ -3,16 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Auth\Guard;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class PostsController extends Controller
 {
-    public function __construct()
+    /**
+     * The Guard implementation.
+     *
+     * @var Guard
+     */
+    protected $auth;
+
+    public function __construct(Guard $auth)
     {
+      $this->auth = $auth;
       $this->middleware('auth', ['except' => ['index', 'show']]);
+      $this->middleware('modifyPost', ['only' => ['edit', 'update', 'destroy']]);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -47,7 +58,7 @@ class PostsController extends Controller
             'category_id' => 'required'
         ]);
 
-        \App\Post::create($request->all());
+        \App\Post::create($request->all()+['user_id' => $this->auth->user()->id]);
         return redirect()->route('posts.index')->with('status', 'Post Created!');
     }
 
